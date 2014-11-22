@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title>Who's Better at Math</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
+
+        <style type="text/css">
+
+             body {
+                 margin-left: 25%;
+                 margin-right: 25%;
+
+                 font-family: "Open Sans", sans-serif;
+             }
+        </style>
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    </head>
+    <body>
+        <div class="page-header">
+            Finish five multiplication questions as fast as possible. When you are done, submit as either male or female.
+        </div>
+
+        <div class="alert alert-warning" style="display: none;">One or more of your answers is wrong. Fix it!</div>
+
+        <div class="input-group">
+            <span class="input-group-addon">7 x 16</span>
+            <input type="text" class="form-control" style = "width 60px;" id="no1">
+        </div>
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon">3 x 72</span>
+            <input type="text" class="form-control" style = "width 60px;"id="no2">
+        </div>        
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon">13 x 12</span>
+            <input type="text" class="form-control" style = "width 60px;"id="no3">
+        </div>
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon">15 x 9</span>
+            <input type="text" class="form-control" style = "width 60px;"id="no4">
+        </div>
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon">.05 x .017</span>
+            <input type="text" class="form-control" style = "width 60px;"id="no5">
+        </div>
+        <br>
+
+        <hr>
+
+        <p class="btn btn-default btn-male">Submit as male</p>
+        <p class="btn btn-default btn-female">Submit as female</p>
+
+        <script type="text/javascript">
+            var startTime = Date.now();
+            $(".alert").hide();
+
+            $(".btn-male").click(function() {
+                var ans1 = $("#no1").val();
+                var ans2 = $("#no2").val();
+                var ans3 = $("#no3").val();
+                var ans4 = $("#no4").val();
+                var ans5 = $("#no5").val();
+
+                if (ans1 == 112 && ans2 == 216 && ans3 == 156 && ans4 == 135 && ans5 == .00085){
+                    alert ("GG");
+                    var myFirebaseRef = new Firebase("https//betteratmath.firebaseio.com/");
+                    var time = ((Date.now() - startTime)/1000);
+                    myFirebaseRef.push({ "gender" : "male", "time": time});
+                    
+                }
+                    
+                else
+                    $(".alert").show();
+
+                
+               //alert(ans1 + " " + ans2 + " " + ans3 + " " + ans4 + " "+ ans5);
+            });   
+
+            $(".btn-female").click(function() {
+                var ans1 = $("#no1").val();
+                var ans2 = $("#no2").val();
+                var ans3 = $("#no3").val();
+                var ans4 = $("#no4").val();
+                var ans5 = $("#no5").val();
+
+                if (ans1 == 112 && ans2 == 216 && ans3 == 156 && ans4 == 135 && ans5 == .00085){
+                    alert (timeSpent + "seconds. GG!");
+                    var myFirebaseRef = new Firebase("https://betteratmath.firebaseio.com/");
+                    var time = ((Date.now() - startTime)/1000);
+                    myFirebaseRef.push({ "gender" : "female", "time": time});
+                    
+                }
+                    
+                else
+                    $(".alert").show();
+
+                
+               //alert(ans1 + " " + ans2 + " " + ans3 + " " + ans4 + " "+ ans5);
+            });
+
+
+        </script>
+</body>
+</html>
